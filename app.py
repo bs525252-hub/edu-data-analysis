@@ -39,9 +39,13 @@ if uploaded_file is not None:
         st.header("1. 데이터 탐색 및 단위 표준화")
         
         st.subheader("① 변수 간 상관관계 (히트맵)")
-        fig, ax = plt.subplots(figsize=(8, 6))
+        # figsize(가로, 세로) 숫자를 줄여 도화지 크기를 축소합니다.
+        fig, ax = plt.subplots(figsize=(5, 4)) 
+        
         sns.heatmap(df[features + [target]].corr(), annot=True, cmap="Oranges", ax=ax, fmt=".2f")
-        st.pyplot(fig)
+        
+        # use_container_width=False 를 추가하여 모니터 크기에 맞춰 강제로 늘어나는 것을 방지합니다.
+        st.pyplot(fig, use_container_width=False)
         
         st.divider()
         
